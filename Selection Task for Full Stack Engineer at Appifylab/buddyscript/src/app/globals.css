@@ -1,0 +1,17 @@
+/* 
+ * globals.css — minimal overrides only.
+ * All design comes from /public/assets/css/ (original Bootstrap + custom CSS)
+ * loaded via root layout <head>.
+ */
+
+/* Tailwind base reset removed — using original design CSS instead */
+
+/* Only add Next.js-specific utilities here */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure next/image doesn't break layout */
+img {
+  max-width: 100%;
+}
