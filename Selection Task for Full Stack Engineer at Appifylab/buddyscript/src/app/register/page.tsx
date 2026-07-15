@@ -59,20 +59,35 @@ export default function RegisterPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
-      const data = await res.json();
+
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        setGlobalError("Server returned invalid response. Check Vercel logs.");
+        return;
+      }
 
       if (!res.ok) {
-        setGlobalError(data.error?.message ?? "Registration failed. Try again.");
+        setGlobalError(data?.error?.message ?? "Registration failed. Try again.");
         return;
       }
 
       // Auto sign-in after successful registration
-      await signIn("credentials", {
+      const signInRes = await signIn("credentials", {
         email: form.email,
         password: form.password,
         redirect: false,
       });
+
+      if (signInRes?.error) {
+        setGlobalError(signInRes.error);
+        return;
+      }
+
       router.push("/feed");
+    } catch (error: any) {
+      setGlobalError(error.message || "Network error. Cannot reach server.");
     } finally {
       setLoading(false);
     }
