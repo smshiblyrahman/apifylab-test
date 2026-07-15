@@ -10,6 +10,9 @@ export async function uploadImage(
   dataUri: string,
   folder = "buddyscript"
 ): Promise<string> {
+  if (!process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME === "Root") {
+    return dataUri;
+  }
   const result = await cloudinary.uploader.upload(dataUri, {
     folder,
     resource_type: "image",
@@ -22,5 +25,8 @@ export async function uploadImage(
 }
 
 export async function deleteImage(publicId: string): Promise<void> {
+  if (!process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME === "Root") {
+    return;
+  }
   await cloudinary.uploader.destroy(publicId);
 }

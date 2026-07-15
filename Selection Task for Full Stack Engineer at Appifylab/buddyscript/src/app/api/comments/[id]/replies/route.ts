@@ -37,7 +37,7 @@ export async function GET(
 
     let likedIds: Set<string> = new Set();
     if (userId && replies.length > 0) {
-      const ids = replies.map((r) => r.id);
+      const ids = replies.map((r: any) => r.id);
       const myLikes = await prisma.like.findMany({
         where: { userId, commentId: { in: ids } },
         select: { commentId: true },
@@ -45,7 +45,7 @@ export async function GET(
       likedIds = new Set(myLikes.map((l) => l.commentId!));
     }
 
-    const data = replies.map((r) => ({ ...r, likedByMe: likedIds.has(r.id) }));
+    const data = replies.map((r: any) => ({ ...r, likedByMe: likedIds.has(r.id) }));
     return NextResponse.json({ replies: data, nextCursor });
   } catch (error) {
     console.error("GET /api/comments/[id]/replies error:", error);

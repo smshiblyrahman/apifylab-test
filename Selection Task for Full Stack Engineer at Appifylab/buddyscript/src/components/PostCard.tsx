@@ -106,7 +106,7 @@ export default function PostCard({ post, currentUserId }: PostCardProps) {
   }
 
   return (
-    <div className="_feed_post_wrap">
+    <div className="_feed_post_wrap animate-fade-up">
       <div className="_feed_post_box">
         {/* Header */}
         <div className="_feed_post_top">

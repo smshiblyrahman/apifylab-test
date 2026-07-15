@@ -4,8 +4,6 @@
  * loaded via root layout <head>.
  */
 
-/* Tailwind base reset removed — using original design CSS instead */
-
 /* Only add Next.js-specific utilities here */
 html {
   scroll-behavior: smooth;
@@ -14,4 +12,101 @@ html {
 /* Ensure next/image doesn't break layout */
 img {
   max-width: 100%;
+}
+
+/* PREMIUM UI OVERRIDES */
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  color: #f8fafc !important;
+  min-height: 100vh;
+}
+
+._layout_main_wrapper, ._feed_wrapper {
+  background: transparent !important;
+}
+
+/* Glassmorphism Cards */
+.glass-card, ._feed_inner_box {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease !important;
+}
+
+.glass-card:hover, ._feed_inner_box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Text Overrides */
+._feed_post_name_text a, ._feed_post_name_text h4, ._feed_post_text p {
+  color: #f1f5f9 !important;
+}
+
+._feed_post_time_text p {
+  color: #94a3b8 !important;
+}
+
+/* Input Fields */
+input, textarea, .form-control {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+input:focus, textarea:focus, .form-control:focus {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2) !important;
+  outline: none !important;
+}
+
+/* Vibrant Buttons */
+._btn1, button[type="submit"], ._feed_post_btn, ._login_btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+._btn1:hover, button[type="submit"]:hover, ._feed_post_btn:hover, ._login_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5) !important;
+  filter: brightness(1.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Header/Nav Fixes */
+._header_wrapper {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+._header_logo_text {
+  color: #fff !important;
 }
